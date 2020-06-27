@@ -18,8 +18,7 @@ Future insertUser(
     String password,
     String firstname,
     String lastname,
-    String description,
-    DateTime birthdate) async {
+    String description) async {
   String url = 'http://10.0.2.2/Php/Controllers/RegisterController.php';
   final reponse = await http.post(url, headers: {
     "Accept": "Application/json"
@@ -31,7 +30,6 @@ Future insertUser(
     'description': description,
     'category': category,
     'profiletype': profile,
-    'birthdate': birthdate
   });
   var jsonReponse = jsonDecode(reponse.body);
   return (jsonReponse);

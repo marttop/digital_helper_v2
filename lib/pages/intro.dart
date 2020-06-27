@@ -34,10 +34,7 @@ class IntroPage extends StatelessWidget {
                       btnText: "Découvrir",
                       id: 0,
                       onBtnPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return LoginPage();
-                        }));
+                        Navigator.of(context).popAndPushNamed('/login');
                       },
                     )
                   ],

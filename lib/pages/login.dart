@@ -77,10 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return RegistrationPage();
-                          }));
+                          Navigator.of(context).pushNamed('/register');
                         },
                       ),
                     ],
@@ -137,9 +134,7 @@ class _LoginPageState extends State<LoginPage> {
               errorMsg = "Connexion réussie!";
               user = User.map(rep['user_arr']);
             });
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return HomePage(user: user);
-            }));
+            Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false, arguments: user);
           } else {
             setState(() {
               txtColor = Colors.red;

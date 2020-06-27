@@ -90,13 +90,16 @@ class CustomControllerDateField extends StatelessWidget {
   CustomControllerDateField({this.parent});
   @override
   Widget build(BuildContext context) {
-    return InputDatePickerFormField(
-      onDateSaved: (DateTime newDate) {
-        parent.birthdate = newDate;
-      },
-      firstDate: DateTime(1920),
-      lastDate: DateTime(2020),
-      fieldLabelText: "Date de naissance",
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+      child: InputDatePickerFormField(
+        onDateSaved: (DateTime newDate) {
+          parent.birthdate = newDate;
+        },
+        firstDate: DateTime(1920),
+        lastDate: DateTime(2020),
+        fieldLabelText: "Date de naissance",
+      ),
     );
   }
 }
@@ -124,19 +127,6 @@ class _CustomRegistrationFormState extends State<CustomRegistrationForm> {
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
   final descriptionController = TextEditingController();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    emailController.dispose();
-    confEmailController.dispose();
-    pwdController.dispose();
-    confPwdController.dispose();
-    firstnameController.dispose();
-    lastnameController.dispose();
-    descriptionController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -274,14 +264,11 @@ class _CustomRegistrationFormState extends State<CustomRegistrationForm> {
           pwdController.text,
           firstnameController.text,
           lastnameController.text,
-          descriptionController.text,
-          birthdate);
+          descriptionController.text);
       if (rep.containsKey('status')) {
         setState(() {
           if (rep['status'] == 1) {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return LoginPage();
-            }));
+            Navigator.of(context).pop();
             showPopUp(rep['status_text']);
           } else {
             showPopUp(rep['status_text']);

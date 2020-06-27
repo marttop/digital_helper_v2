@@ -1,3 +1,6 @@
+import 'package:digital_helper_v2/pages/home.dart';
+import 'package:digital_helper_v2/pages/login.dart';
+import 'package:digital_helper_v2/pages/registration.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/intro.dart';
@@ -6,10 +9,19 @@ void main() {
   runApp(MyApp());
 }
 
+final routes = {
+  '/login': (BuildContext context) => LoginPage(),
+  '/home': (BuildContext context) => HomePage(),
+  '/register': (BuildContext context) => RegistrationPage(),
+  '/intro': (BuildContext context) => IntroPage(),
+  '/': (BuildContext context) => IntroPage()
+};
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: routes,
       title: 'Flutter Demo',
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -26,7 +38,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: IntroPage(),
       debugShowCheckedModeBanner: false,
     );
   }
