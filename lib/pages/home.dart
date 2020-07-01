@@ -7,31 +7,13 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-  static double width, height;
+class _HomePageState extends State<HomePage> {
+  static double width;
   static bool isOpen = true;
-  AnimationController _animationController;
-  Animation<double> _scale;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(vsync: this, duration: Duration(
-      milliseconds: 300,
-    ));
-    _scale = Tween<double>(begin: 1, end: 0.6).animate(_animationController);
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    height = size.height;
     width = size.width;
     final User user = ModalRoute.of(context).settings.arguments;
     return Scaffold(
@@ -41,10 +23,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           icon: Icon(Icons.menu),
           onPressed: () {
             setState(() {
-              if (isOpen)
-                _animationController.forward();
-              else
-                _animationController.reverse();
               isOpen = !isOpen;
             });
           },
@@ -92,16 +70,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       duration: Duration(
         milliseconds: 300,
       ),
-      child: ScaleTransition(
-        scale: _scale,
-        child: Material(
-          child: Container(
-            padding: EdgeInsets.only(left: 16, top: 48, right: 16),
-            child: Center(
-                child: Text(
-              "Bonjour ${user.firstname} ${user.lastname}",
-            )),
-          ),
+      child: Material(
+        child: Container(
+          padding: EdgeInsets.only(left: 16, top: 48, right: 16),
+          child: Center(
+              child: Text(
+            "Bonjour ${user.firstname} ${user.lastname}",
+          )),
         ),
       ),
     );
