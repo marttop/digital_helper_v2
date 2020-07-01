@@ -1,10 +1,8 @@
 import 'package:digital_helper_v2/api/api.dart';
 import 'package:digital_helper_v2/models/user.dart';
-import 'package:digital_helper_v2/pages/registration.dart';
 import 'package:digital_helper_v2/utils/custom_widgets.dart';
 import 'package:flutter/material.dart';
 
-import 'home.dart';
 
 class LoginPage extends StatefulWidget {
   @override
