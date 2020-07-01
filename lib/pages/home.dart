@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Stack(
         children: [
-          MenuPage(),
+          MenuPage(user: user),
           dashboard(context, user),
         ],
       ),
