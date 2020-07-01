@@ -9,7 +9,6 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  String statusText = "Disponible";
   IconData statusIcon = Icons.check_circle;
   Color statusColor = Colors.green;
   @override
@@ -33,7 +32,7 @@ class _MenuPageState extends State<MenuPage> {
                 ),
                 ListTile(
                   leading: Icon(statusIcon, color: statusColor),
-                  title: Text(statusText),
+                  title: Text(widget.user.status),
                   onTap: changeUserStatus,
                 ),
                 ListTile(
@@ -49,18 +48,23 @@ class _MenuPageState extends State<MenuPage> {
 
   void changeUserStatus() {
     setState(() {
-      if (statusText == "Disponible") {
-        statusColor = Colors.orange;
-        statusText = "Occupé";
-        statusIcon = Icons.timelapse;
-      } else if (statusText == "Occupé") {
-        statusColor = Colors.red;
-        statusText = "Indisponible";
-        statusIcon = Icons.do_not_disturb_on;
-      } else if (statusText == "Indisponible") {
-        statusColor = Colors.green;
-        statusText = "Disponible";
-        statusIcon = Icons.check_circle;
+      switch (widget.user.status) {
+        case "Disponible":
+          statusColor = Colors.orange;
+          statusIcon = Icons.timelapse;
+          widget.user.status = "Occupé";
+          break;
+        case "Occupé":
+          statusColor = Colors.red;
+          statusIcon = Icons.do_not_disturb_on;
+          widget.user.status = "Indisponible";
+          break;
+        case "Indisponible":
+          statusColor = Colors.green;
+          statusIcon = Icons.check_circle;
+          widget.user.status = "Disponible";
+          break;
+        default:
       }
     });
   }

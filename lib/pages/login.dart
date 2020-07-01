@@ -131,6 +131,7 @@ class _LoginPageState extends State<LoginPage> {
               txtColor = Colors.green;
               errorMsg = "Connexion réussie!";
               user = User.map(rep['user_arr']);
+              user.status = "Disponible";
             });
             Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false, arguments: user);
           } else {

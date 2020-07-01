@@ -8,6 +8,7 @@ class User {
   String profiletype;
   String description;
   String category;
+  String status = "Disponible";
 
   User(
       {this.id,
@@ -30,6 +31,7 @@ class User {
     this.category = obj['category'];
     this.description = obj['description'];
     this.profiletype = obj['profiletype'];
+    this.status = obj['status'];
   }
 
   String get textbirthdate {
@@ -47,6 +49,7 @@ class User {
     map['category'] = category;
     map['description'] = description;
     map['profiletype'] = profiletype;
+    map['status'] = status;
     return map;
   }
 }
