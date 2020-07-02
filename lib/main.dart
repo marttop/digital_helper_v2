@@ -17,6 +17,15 @@ final routes = {
   '/': (BuildContext context) => IntroPage()
 };
 
+class Bodies {
+  static const int ALERTS = 0;
+  static const int CONV = 1;
+  static const int FRIEND_LIST = 2;
+  static const int MORE = 3;
+
+  int currentBody = 0;
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

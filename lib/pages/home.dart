@@ -1,6 +1,12 @@
+import 'package:digital_helper_v2/main.dart';
 import 'package:digital_helper_v2/models/user.dart';
+import 'package:digital_helper_v2/pages/bodies/alerts.dart';
 import 'package:digital_helper_v2/pages/menu.dart';
 import 'package:flutter/material.dart';
+
+import 'bodies/conv.dart';
+import 'bodies/friend_list.dart';
+import 'bodies/more.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static double width;
   static bool isOpen = true;
+  int body = Bodies.ALERTS;
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +47,29 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                  icon: Icon(Icons.notifications_active), onPressed: () {}),
+              IconButton(icon: Icon(Icons.notifications_active), onPressed: () {
+                  setState(() {
+                    body = Bodies.ALERTS;
+                  });
+              }),
               SizedBox(width: 30),
-              IconButton(icon: Icon(Icons.message), onPressed: () {}),
+              IconButton(icon: Icon(Icons.message), onPressed: () {
+                setState(() {
+                  body = Bodies.CONV;
+                });
+              }),
               SizedBox(width: 30),
-              IconButton(icon: Icon(Icons.people_outline), onPressed: () {}),
+              IconButton(icon: Icon(Icons.people_outline), onPressed: () {
+                setState(() {
+                  body = Bodies.FRIEND_LIST;
+                });
+              }),
               SizedBox(width: 30),
-              IconButton(icon: Icon(Icons.more_horiz), onPressed: () {})
+              IconButton(icon: Icon(Icons.more_horiz), onPressed: () {
+                setState(() {
+                  body = Bodies.MORE;
+                });
+              })
             ],
           ),
         ],
@@ -55,13 +77,13 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           MenuPage(user: user),
-          dashboard(context, user),
+          myBody(user),
         ],
       ),
     );
   }
 
-  Widget dashboard(context, user) {
+  Widget myBody(user) {
     return AnimatedPositioned(
       top: 0,
       bottom: 0,
@@ -70,15 +92,23 @@ class _HomePageState extends State<HomePage> {
       duration: Duration(
         milliseconds: 300,
       ),
-      child: Material(
-        child: Container(
-          padding: EdgeInsets.only(left: 16, top: 48, right: 16),
-          child: Center(
-              child: Text(
-            "Bonjour ${user.firstname} ${user.lastname}",
-          )),
-        ),
-      ),
+      child: bodySelector(user) 
     );
+  }
+
+  Widget bodySelector(user) {
+    if (body == Bodies.ALERTS) {
+      return AlertBody(user: user);
+    }
+    else if (body == Bodies.CONV) {
+      return ConvBody(user: user);
+    }
+    else if (body == Bodies.FRIEND_LIST) {
+      return FriendListBody(user: user);
+    }
+    else if (body == Bodies.MORE) {
+      return MoreBody(user: user);
+    }
+    return SizedBox();
   }
 }
