@@ -22,6 +22,7 @@ class Bodies {
   static const int CONV = 1;
   static const int FRIEND_LIST = 2;
   static const int MORE = 3;
+  static const int LOGOUT = 4;
 
   int currentBody = 0;
 }

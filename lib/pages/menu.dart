@@ -40,6 +40,17 @@ class _MenuPageState extends State<MenuPage> {
                   title: Text("Paramètres"),
                   onTap: () {},
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 300),
+                  child: ListTile(
+                    leading: Icon(Icons.cancel, color: Colors.red),
+                    title: Text("Déconnexion"),
+                    onTap: () {
+                      // Navigator.pushNamedAndRemoveUntil(
+                      //     context, '/login', (route) => false);
+                    },
+                  ),
+                ),
               ]),
         ),
       ),

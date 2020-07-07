@@ -97,18 +97,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget bodySelector(user) {
-    if (body == Bodies.ALERTS) {
-      return AlertBody(user: user);
+    switch (body) {
+      case Bodies.ALERTS :
+        return AlertBody(user: user);
+        break;
+      case Bodies.CONV :
+        return ConvBody(user: user);
+        break;
+      case Bodies.FRIEND_LIST :
+        return FriendListBody(user: user);
+        break;
+      case Bodies.MORE :
+        return MoreBody(user: user);
+        break;
+      default:
+        return SizedBox();
     }
-    else if (body == Bodies.CONV) {
-      return ConvBody(user: user);
-    }
-    else if (body == Bodies.FRIEND_LIST) {
-      return FriendListBody(user: user);
-    }
-    else if (body == Bodies.MORE) {
-      return MoreBody(user: user);
-    }
-    return SizedBox();
   }
 }

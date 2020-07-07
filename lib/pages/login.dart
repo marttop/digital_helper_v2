@@ -117,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState.validate()) {
       var email = emailController.text;
       var password = passwordController.text;
+      print("email = " + email + '\n' + password);
       setState(() {
         txtColor = Colors.white;
         errorMsg = 'Patientez...';
