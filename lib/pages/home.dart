@@ -41,38 +41,41 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black26,
         elevation: 0.0,
       ),
-      bottomNavigationBar: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(icon: Icon(Icons.notifications_active), onPressed: () {
+      bottomNavigationBar: Container(
+        color: Colors.black26,
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(icon: Icon(Icons.notifications_active), onPressed: () {
+                    setState(() {
+                      body = Bodies.ALERTS;
+                    });
+                }),
+                SizedBox(width: 30),
+                IconButton(icon: Icon(Icons.message), onPressed: () {
                   setState(() {
-                    body = Bodies.ALERTS;
+                    body = Bodies.CONV;
                   });
-              }),
-              SizedBox(width: 30),
-              IconButton(icon: Icon(Icons.message), onPressed: () {
-                setState(() {
-                  body = Bodies.CONV;
-                });
-              }),
-              SizedBox(width: 30),
-              IconButton(icon: Icon(Icons.people_outline), onPressed: () {
-                setState(() {
-                  body = Bodies.FRIEND_LIST;
-                });
-              }),
-              SizedBox(width: 30),
-              IconButton(icon: Icon(Icons.more_horiz), onPressed: () {
-                setState(() {
-                  body = Bodies.MORE;
-                });
-              })
-            ],
-          ),
-        ],
+                }),
+                SizedBox(width: 30),
+                IconButton(icon: Icon(Icons.people_outline), onPressed: () {
+                  setState(() {
+                    body = Bodies.FRIEND_LIST;
+                  });
+                }),
+                SizedBox(width: 30),
+                IconButton(icon: Icon(Icons.more_horiz), onPressed: () {
+                  setState(() {
+                    body = Bodies.MORE;
+                  });
+                })
+              ],
+            ),
+          ],
+        ),
       ),
       body: Stack(
         children: [
