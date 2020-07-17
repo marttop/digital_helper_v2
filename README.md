@@ -6,7 +6,6 @@ You can register as a "Teacher" or a "Student" and chose any category you're goo
 ## Getting Started
 
 This project is a starting point for a Flutter application.
-(Everything works with localhost)
 
 ## Features
 
